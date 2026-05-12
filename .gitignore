@@ -1,3 +1,4 @@
+/.idea
 # Cache and logs (Symfony2)
 /app/cache/*
 /app/logs/*
@@ -31,6 +32,23 @@
 !bin/symfony_requirements
 /vendor/
 
+###> shopware/core ###
+.env.local
+.env.local.php
+.env.*.local
+/public/bundles/*
+/public/media/*
+/public/theme/*
+/public/thumbnail/*
+/public/sitemap/*
+/files/*
+!/files/.htaccess
+/var/*
+!/var/.htaccess
+/auth.json
+/install.lock
+/public/asset-manifest.json
+###< shopware/core ###
 # Assets and user uploads
 /web/bundles/
 /web/uploads/
