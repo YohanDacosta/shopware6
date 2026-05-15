@@ -1,0 +1,87 @@
+<sw-card :title="$t('product-notes.detail.cardTitle')" :isLoading="isLoading">
+    <template #toolbar>
+        <sw-button 
+            variant="primary" 
+            size="small"
+            @click="onAddNote">
+            {{ $t('product-notes.detail.buttonAddNote') }}
+        </sw-button>
+    </template>
+
+    <template #grid>
+        <sw-data-grid
+            v-if="notes.length > 0"
+            :dataSource="notes"
+            :columns="noteColumns"
+            :showSelection="false"
+            :isLoading="isLoading">
+
+            <template #column-note="{ item }">
+                <div class="note-preview">
+                    {{ item.note.length > 100 ? item.note.substring(0, 100) + '...' : item.note }}
+                </div>
+            </template>
+
+            <template #column-solved="{ item }">
+                <sw-data-grid-column-boolean
+                    :value="item.solved"
+                    :is-inline-edit="false"
+                />
+            </template>
+
+            <template #column-createdAt="{ item }">
+                {{ dateFilter(item.createdAt, { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }) }}
+            </template>
+
+            <template #actions="{ item }">
+                <sw-context-menu-item @click="onEditNote(item)">
+                    {{ $t('product-notes.detail.buttonEdit') }}
+                </sw-context-menu-item>
+                <sw-context-menu-item 
+                    variant="danger"
+                    @click="onDeleteNote(item)">
+                    {{ $t('product-notes.detail.buttonDelete') }}
+                </sw-context-menu-item>
+            </template>
+        </sw-data-grid>
+
+        <sw-empty-state
+            v-else
+            :title="$t('product-notes.detail.messageNoNotes')">
+        </sw-empty-state>
+    </template>
+
+    <!-- Note Modal -->
+    <product-note-modal
+        v-if="showModal"
+        :note="currentNote"
+        @save="onSaveNote"
+        @close="onCloseModal">
+    </product-note-modal>
+
+    <!-- Delete Modal -->
+    <sw-modal
+        v-if="showDeleteModal"
+        :title="$t('product-notes.detail.buttonDelete')"
+        variant="small"
+        @modal-close="onCancelDelete">
+        <p>{{ $t('product-notes.detail.messageDeleteConfirm') }}</p>
+        
+        <template #modal-footer>
+            <mt-button
+                size="small"
+                variant="secondary"
+                @click="onCancelDelete"
+            >
+                {{ $t('product-notes.detail.buttonCancel') }}
+            </mt-button>
+            <mt-button
+                variant="critical"
+                size="small"
+                @click="onConfirmDelete"
+            >
+                {{ $t('product-notes.detail.buttonDelete') }}
+            </mt-button>
+        </template>
+    </sw-modal>
+</sw-card> 

@@ -1,0 +1,11 @@
+{
+  "main.js": {
+    "file": "assets/product-notes-Bx8lL2By.js",
+    "name": "product-notes",
+    "src": "main.js",
+    "isEntry": true,
+    "css": [
+      "assets/product-notes-CakOp62Q.css"
+    ]
+  }
+}

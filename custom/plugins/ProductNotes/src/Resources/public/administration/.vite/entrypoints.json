@@ -1,0 +1,25 @@
+{
+  "base": "/bundles/productnotes/administration/",
+  "entryPoints": {
+    "product-notes": {
+      "css": [
+        "/bundles/productnotes/administration/assets/product-notes-CakOp62Q.css"
+      ],
+      "dynamic": [],
+      "js": [
+        "/bundles/productnotes/administration/assets/product-notes-Bx8lL2By.js"
+      ],
+      "legacy": false,
+      "preload": []
+    }
+  },
+  "legacy": false,
+  "metadatas": {},
+  "version": [
+    "7.1.0",
+    7,
+    1,
+    0
+  ],
+  "viteServer": null
+}

@@ -1,0 +1,36 @@
+<sw-modal
+    :title="modalTitle"
+    @modal-close="onClose">
+
+    <template #body>
+        <div class="product-note-modal__content">
+            <sw-container columns="1fr" gap="20px">
+                <sw-textarea-field
+                    v-model="note.note"
+                    :label="$t('product-notes.detail.labelNote')"
+                    :placeholder="$t('product-notes.detail.placeholderNote')"
+                    required>
+                </sw-textarea-field>
+
+                <sw-checkbox-field
+                    v-model="note.solved"
+                    :label="$t('product-notes.detail.labelSolved')">
+                </sw-checkbox-field>
+            </sw-container>
+        </div>
+    </template>
+
+    <template #modal-footer>
+        <sw-button 
+            size="small"
+            @click="onClose">
+            {{ $t('product-notes.detail.buttonCancel') }}
+        </sw-button>
+        <sw-button 
+            variant="primary" 
+            size="small"
+            @click="onSave">
+            {{ $t('product-notes.detail.buttonSave') }}
+        </sw-button>
+    </template>
+</sw-modal> 
